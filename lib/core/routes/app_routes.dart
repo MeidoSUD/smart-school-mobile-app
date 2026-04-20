@@ -1,34 +1,29 @@
 class AppRoutes {
-  static const String home = '/home';
+  // Main Routes
   static const String login = '/login';
-  static const String onboarding = '/onboarding';
-  static const String splash = '/splash';
-  static const String register = '/register';
-  static const String lessons = '/lessons';
-  static const String courses = '/courses';
-  static const String orders = '/orders';
-  static const String myLessons = '/my-lessons';
-  static const String editProfile = '/edit-profile';
-  static const String editPassword = '/edit-password';
-  static const String changePassword = '/change-password';
-  static const String roles = '/roles';
-  static const String levelsManage = '/levels-manage';
-  static const String lessonsManage = '/lessons-manage';
-  static const String scheduleManage = '/schedule-manage';
-  static const String coursesManage = '/courses-manage';
-  static const String profitManage = '/profit-manage';
-  static const String paymentManage = '/payment-manage';
-  static const String sendPhone = '/send-phone';
+  static const String home = '/home';
+
+  // LMS Routes
+  static const String lmsLogin = '/lms/login';
+  static const String lmsHome = '/lms/home';
+  static const String lmsDashboard = '/lms/dashboard';
+  static const String lmsProfile = '/lms/profile';
+  static const String lmsFees = '/lms/fees';
+  static const String lmsAttendance = '/lms/attendance';
+  static const String lmsMarks = '/lms/marks';
+  static const String lmsHomework = '/lms/homework';
+  static const String lmsTimetable = '/lms/timetable';
+  static const String lmsSubjects = '/lms/subjects';
+  static const String lmsSyllabus = '/lms/syllabus';
+  static const String lmsTeachers = '/lms/teachers';
+  static const String lmsChat = '/lms/chat';
+  static const String lmsLibrary = '/lms/library';
+  static const String lmsTransport = '/lms/transport';
+  static const String lmsExams = '/lms/exams';
+  static const String lmsOnlineExam = '/lms/online-exam';
+  static const String lmsCalendar = '/lms/calendar';
+  static const String lmsHostel = '/lms/hostel';
+  static const String lmsVisitors = '/lms/visitors';
+  static const String lmsLeave = '/lms/leave';
   static const String notifications = '/notifications';
-  static const String webview = '/webview';
-  static const String bookings = '/bookings';
-  static const String studentOrders = '/student-orders';
-  static const String courseCategories = '/course-categories';
-  static const String addCourse = '/add-course';
-  static const String editCourse = '/edit-course';
-  static const String languagesManage = '/languages-manage';
-  static const String paymentMethods = '/payment-methods';
-  static const String logout = '/logout';
-  static const String about = '/about';
-  static const String teacherCompleteProfile = '/teacher-complete-profile';
 }

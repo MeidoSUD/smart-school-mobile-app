@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<apiDocumentation>
+    <title>LMS Mobile API Documentation</title>
+    <version>1.0.0</version>
+    <baseUrl>{base_url}/api/user</baseUrl>
+    <auth>
+        <type>Bearer Token</type>
+        <header>Authorization</header>
+        <format>Bearer {access_token}</format>
+    </auth>
+
+    <!-- Authentication Endpoints -->
+    <endpoints>
+        <group name="Authentication">
+            <endpoint>
+                <method>POST</method>
+                <path>/auth/login</path>
+                <description>Login student or parent</description>
+                <parameters>
+                    <param name="username" type="string" required="true">Username or email</param>
+                    <param name="password" type="string" required="true">Password</param>
+                </parameters>
+                <response>
+                    <status>success</status>
+                    <data>
+                        <token>access_token</token>
+                        <refresh_token>refresh_token</refresh_token>
+                        <user>
+                            <id>1</id>
+                            <role>student</role>
+                            <firstname>John</firstname>
+                            <lastname>Doe</lastname>
+                        </user>
+                    </data>
+                </response>
+            </endpoint>
+
+            <endpoint>
+                <method>POST</method>
+                <path>/auth/logout</path>
+                <description>Logout user</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+
+            <endpoint>
+                <method>POST</method>
+                <path>/auth/refresh</path>
+                <description>Refresh access token</description>
+                <parameters>
+                    <param name="refresh_token" type="string" required="true">Refresh token</param>
+                </parameters>
+            </endpoint>
+
+            <endpoint>
+                <method>POST</method>
+                <path>/auth/changepass</path>
+                <description>Change password</description>
+                <auth_required>true</auth_required>
+                <parameters>
+                    <param name="current_pass" type="string" required="true">Current password</param>
+                    <param name="new_pass" type="string" required="true">New password</param>
+                    <param name="confirm_pass" type="string" required="true">Confirm new password</param>
+                </parameters>
+            </endpoint>
+        </group>
+
+        <group name="Dashboard">
+            <endpoint>
+                <method>GET</method>
+                <path>/user/dashboard</path>
+                <description>Get student dashboard data</description>
+                <auth_required>true</auth_required>
+                <response>
+                    <data>
+                        <attendence_percentage>85</attendence_percentage>
+                        <homeworklist>[]</homeworklist>
+                        <notificationlist>[]</notificationlist>
+                        <subjects_data>[]</subjects_data>
+                        <timetable>{}</timetable>
+                        <visitor_list>[]</visitor_list>
+                    </data>
+                </response>
+            </endpoint>
+        </group>
+
+        <group name="Profile">
+            <endpoint>
+                <method>GET</method>
+                <path>/user/profile</path>
+                <description>Get student profile</description>
+                <auth_required>true</auth_required>
+                <response>
+                    <data>
+                        <student>
+                            <id>1</id>
+                            <firstname>John</firstname>
+                            <lastname>Doe</lastname>
+                            <admission_no>ADM001</admission_no>
+                            <class_id>1</class_id>
+                            <section_id>1</section_id>
+                        </student>
+                        <student_due_fee>[]</student_due_fee>
+                        <transport_fees>[]</transport_fees>
+                        <exam_result>[]</exam_result>
+                    </data>
+                </response>
+            </endpoint>
+        </group>
+
+        <group name="Fees">
+            <endpoint>
+                <method>GET</method>
+                <path>/user/fees</path>
+                <description>Get student fees</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+
+            <endpoint>
+                <method>GET</method>
+                <path>/user/getfees</path>
+                <description>Get student fee details</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+
+            <endpoint>
+                <method>GET</method>
+                <path>/user/getcollectfee</path>
+                <description>Get collected fees</description>
+                <auth_required>true</auth_required>
+                <parameters>
+                    <param name="data" type="json" required="true">Fee data array</param>
+                </parameters>
+            </endpoint>
+        </group>
+
+        <group name="Attendance">
+            <endpoint>
+                <method>GET</method>
+                <path>/attendence</path>
+                <description>Get attendance list</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+
+            <endpoint>
+                <method>GET</method>
+                <path>/attendence/getAttendence</path>
+                <description>Get attendance by date range</description>
+                <auth_required>true</auth_required>
+                <parameters>
+                    <param name="start" type="date" required="true">Start date</param>
+                    <param name="end" type="date" required="true">End date</param>
+                </parameters>
+            </endpoint>
+
+            <endpoint>
+                <method>POST</method>
+                <path>/attendence/getdaysubattendence</path>
+                <description>Get subject attendance by date</description>
+                <auth_required>true</auth_required>
+                <parameters>
+                    <param name="date" type="date" required="true">Date</param>
+                </parameters>
+            </endpoint>
+        </group>
+
+        <group name="Marks">
+            <endpoint>
+                <method>GET</method>
+                <path>/mark/index</path>
+                <description>Get exam marks</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+
+            <endpoint>
+                <method>GET</method>
+                <path>/mark/marklist</path>
+                <description>Get student marks list</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+        </group>
+
+        <group name="Homework">
+            <endpoint>
+                <method>GET</method>
+                <path>/homework</path>
+                <description>Get homework list</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+
+            <endpoint>
+                <method>GET</method>
+                <path>/homework/homework_detail/{id}/{status}</path>
+                <description>Get homework details</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+
+            <endpoint>
+                <method>POST</method>
+                <path>/homework/upload_docs</path>
+                <description>Upload homework documents</description>
+                <auth_required>true</auth_required>
+                <parameters>
+                    <param name="homework_id" type="integer" required="true">Homework ID</param>
+                    <param name="message" type="text" required="true">Message</param>
+                    <param name="file" type="file">Attachment file</param>
+                </parameters>
+            </endpoint>
+        </group>
+
+        <group name="Timetable">
+            <endpoint>
+                <method>GET</method>
+                <path>/timetable</path>
+                <description>Get student timetable</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+        </group>
+
+        <group name="Subjects">
+            <endpoint>
+                <method>GET</method>
+                <path>/subject</path>
+                <description>Get subject list</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+        </group>
+
+        <group name="Syllabus">
+            <endpoint>
+                <method>GET</method>
+                <path>/syllabus</path>
+                <description>Get syllabus</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+
+            <endpoint>
+                <method>GET</method>
+                <path>/syllabus/status</path>
+                <description>Get syllabus completion status</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+        </group>
+
+        <group name="Teachers">
+            <endpoint>
+                <method>GET</method>
+                <path>/teacher</path>
+                <description>Get teacher list</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+
+            <endpoint>
+                <method>POST</method>
+                <path>/teacher/rating</path>
+                <description>Rate a teacher</description>
+                <auth_required>true</auth_required>
+                <parameters>
+                    <param name="staff_id" type="integer" required="true">Teacher ID</param>
+                    <param name="comment" type="text" required="true">Comment</param>
+                    <param name="rate" type="integer" required="true">Rating (1-5)</param>
+                    <param name="user_id" type="integer" required="true">User ID</param>
+                    <param name="role" type="string" required="true">User role</param>
+                </parameters>
+            </endpoint>
+        </group>
+
+        <group name="Notifications">
+            <endpoint>
+                <method>GET</method>
+                <path>/notification</path>
+                <description>Get notification list</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+
+            <endpoint>
+                <method>POST</method>
+                <path>/notification/updatestatus</path>
+                <description>Update notification status</description>
+                <auth_required>true</auth_required>
+                <parameters>
+                    <param name="notification_id" type="integer" required="true">Notification ID</param>
+                </parameters>
+            </endpoint>
+        </group>
+
+        <group name="Chat">
+            <endpoint>
+                <method>GET</method>
+                <path>/chat</path>
+                <description>Get chat list</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+
+            <endpoint>
+                <method>GET</method>
+                <path>/chat/myuser</path>
+                <description>Get my chat users</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+
+            <endpoint>
+                <method>POST</method>
+                <path>/chat/getChatRecord</path>
+                <description>Get chat records</description>
+                <auth_required>true</auth_required>
+                <parameters>
+                    <param name="chat_connection_id" type="integer" required="true">Chat connection ID</param>
+                </parameters>
+            </endpoint>
+
+            <endpoint>
+                <method>POST</method>
+                <path>/chat/newMessage</path>
+                <description>Send new message</description>
+                <auth_required>true</auth_required>
+                <parameters>
+                    <param name="chat_connection_id" type="integer" required="true">Chat connection ID</param>
+                    <param name="chat_to_user" type="integer" required="true">Receiver user ID</param>
+                    <param name="message" type="text" required="true">Message</param>
+                    <param name="time" type="string" required="true">Time</param>
+                </parameters>
+            </endpoint>
+        </group>
+
+        <group name="Library">
+            <endpoint>
+                <method>GET</method>
+                <path>/book</path>
+                <description>Get book list</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+
+            <endpoint>
+                <method>GET</method>
+                <path>/book/issue</path>
+                <description>Get issued books</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+        </group>
+
+        <group name="Transport">
+            <endpoint>
+                <method>GET</method>
+                <path>/route</path>
+                <description>Get transport/route details</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+        </group>
+
+        <group name="Apply Leave">
+            <endpoint>
+                <method>GET</method>
+                <path>/apply_leave</path>
+                <description>Get leave applications</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+
+            <endpoint>
+                <method>POST</method>
+                <path>/apply_leave/add</path>
+                <description>Apply for leave</description>
+                <auth_required>true</auth_required>
+                <parameters>
+                    <param name="apply_date" type="date" required="true">Apply date</param>
+                    <param name="from_date" type="date" required="true">From date</param>
+                    <param name="to_date" type="date" required="true">To date</param>
+                    <param name="message" type="text" required="true">Reason</param>
+                </parameters>
+            </endpoint>
+        </group>
+
+        <group name="Content">
+            <endpoint>
+                <method>GET</method>
+                <path>/content/list</path>
+                <description>Get content list</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+
+            <endpoint>
+                <method>GET</method>
+                <path>/content/assignment</path>
+                <description>Get assignments</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+
+            <endpoint>
+                <method>GET</method>
+                <path>/content/studymaterial</path>
+                <description>Get study materials</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+        </group>
+
+        <group name="Examination">
+            <endpoint>
+                <method>GET</method>
+                <path>/exam</path>
+                <description>Get exam list</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+
+            <endpoint>
+                <method>GET</method>
+                <path>/exam/examresult</path>
+                <description>Get exam results</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+
+            <endpoint>
+                <method>GET</method>
+                <path>/examschedule</path>
+                <description>Get exam schedule</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+        </group>
+
+        <group name="Visitors">
+            <endpoint>
+                <method>GET</method>
+                <path>/visitors</path>
+                <description>Get visitor list</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+        </group>
+
+        <group name="Calendar">
+            <endpoint>
+                <method>GET</method>
+                <path>/calendar</path>
+                <description>Get calendar events</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+
+            <endpoint>
+                <method>POST</method>
+                <path>/calendar/addtodo</path>
+                <description>Add new task</description>
+                <auth_required>true</auth_required>
+                <parameters>
+                    <param name="task_title" type="string" required="true">Task title</param>
+                    <param name="task_date" type="date" required="true">Task date</param>
+                </parameters>
+            </endpoint>
+        </group>
+
+        <group name="Timeline">
+            <endpoint>
+                <method>POST</method>
+                <path>/timeline/add</path>
+                <description>Add timeline post</description>
+                <auth_required>true</auth_required>
+                <parameters>
+                    <param name="timeline_title" type="string" required="true">Title</param>
+                    <param name="timeline_date" type="date" required="true">Date</param>
+                    <param name="student_id" type="integer" required="true">Student ID</param>
+                </parameters>
+            </endpoint>
+        </group>
+
+        <group name="Online Exam">
+            <endpoint>
+                <method>GET</method>
+                <path>/onlineexam</path>
+                <description>Get online exam list</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+
+            <endpoint>
+                <method>POST</method>
+                <path>/onlineexam/submit</path>
+                <description>Submit online exam</description>
+                <auth_required>true</auth_required>
+                <parameters>
+                    <param name="onlineexam_id" type="integer" required="true">Exam ID</param>
+                    <param name="answers" type="json" required="true">Answers JSON</param>
+                </parameters>
+            </endpoint>
+        </group>
+
+        <group name="Payment">
+            <endpoint>
+                <method>GET</method>
+                <path>/offlinepayment</path>
+                <description>Get payment list</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+
+            <endpoint>
+                <method>POST</method>
+                <path>/offlinepayment/add</path>
+                <description>Submit offline payment</description>
+                <auth_required>true</auth_required>
+                <parameters>
+                    <param name="amount" type="number" required="true">Amount</param>
+                    <param name="payment_mode" type="string" required="true">Payment mode</param>
+                </parameters>
+            </endpoint>
+        </group>
+
+        <group name="Video Tutorial">
+            <endpoint>
+                <method>GET</method>
+                <path>/video_tutorial</path>
+                <description>Get video tutorial list</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+        </group>
+
+        <group name="Hostel">
+            <endpoint>
+                <method>GET</method>
+                <path>/hostel</path>
+                <description>Get hostel list</description>
+                <auth_required>true</auth_required>
+            </endpoint>
+        </group>
+
+    </endpoints>
+
+    <!-- Common Error Responses -->
+    <errorResponses>
+        <error code="200">Success</error>
+        <error code="400">Bad Request - Validation error</error>
+        <error code="401">Unauthorized - Invalid or missing token</error>
+        <error code="403">Forbidden - Access denied</error>
+        <error code="404">Not Found - Resource not found</error>
+        <error code="500">Internal Server Error</error>
+    </errorResponses>
+
+    <!-- Sample API Calls -->
+    <sampleCalls>
+        <call>
+            <description>Login Request</description>
+            <curl>curl -X POST "https://api school.com/api/user/auth/login" \
+  -H "Content-Type: application/json" \
+  -d '{"username":"student001","password":"password123"}'</curl>
+        </call>
+        <call>
+            <description>Get Dashboard</description>
+            <curl>curl -X GET "https://api school.com/api/user/user/dashboard" \
+  -H "Authorization: Bearer {access_token}"</curl>
+        </call>
+        <call>
+            <description>Get Fees</description>
+            <curl>curl -X GET "https://api school.com/api/user/user/getfees" \
+  -H "Authorization: Bearer {access_token}"</curl>
+        </call>
+    </sampleCalls>
+</apiDocumentation>
