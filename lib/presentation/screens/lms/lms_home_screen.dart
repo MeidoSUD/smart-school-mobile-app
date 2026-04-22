@@ -12,30 +12,31 @@ class LmsHomeScreen extends ConsumerWidget {
     final authState = ref.watch(lmsAuthProvider);
 
     final menuItems = [
-      _MenuItem('Dashboard', Icons.dashboard, AppRoutes.lmsDashboard),
-      _MenuItem('Profile', Icons.person, AppRoutes.lmsProfile),
-      _MenuItem('Fees', Icons.payment, AppRoutes.lmsFees),
-      _MenuItem('Attendance', Icons.check_circle, AppRoutes.lmsAttendance),
-      _MenuItem('Marks', Icons.grade, AppRoutes.lmsMarks),
-      _MenuItem('Homework', Icons.assignment, AppRoutes.lmsHomework),
-      _MenuItem('Timetable', Icons.schedule, AppRoutes.lmsTimetable),
-      _MenuItem('Subjects', Icons.book, AppRoutes.lmsSubjects),
-      _MenuItem('Syllabus', Icons.list_alt, AppRoutes.lmsSyllabus),
-      _MenuItem('Teachers', Icons.school, AppRoutes.lmsTeachers),
-      _MenuItem('Chat', Icons.chat, AppRoutes.lmsChat),
-      _MenuItem('Library', Icons.library_books, AppRoutes.lmsLibrary),
-      _MenuItem('Transport', Icons.directions_bus, AppRoutes.lmsTransport),
-      _MenuItem('Exams', Icons.quiz, AppRoutes.lmsExams),
-      _MenuItem('Online Exam', Icons.computer, AppRoutes.lmsOnlineExam),
-      _MenuItem('Calendar', Icons.event, AppRoutes.lmsCalendar),
-      _MenuItem('Hostel', Icons.hotel, AppRoutes.lmsHostel),
-      _MenuItem('Visitors', Icons.people, AppRoutes.lmsVisitors),
-      _MenuItem('Apply Leave', Icons.event_busy, AppRoutes.lmsLeave),
+      _MenuItem('Dashboard', AppConstants.logo, AppRoutes.lmsDashboard),
+      _MenuItem('Profile', AppConstants.profileIcon, AppRoutes.lmsProfile),
+      _MenuItem('Fees', AppConstants.feesIcon, AppRoutes.lmsFees),
+      _MenuItem('Attendance', AppConstants.attendanceIcon, AppRoutes.lmsAttendance),
+      _MenuItem('Marks', AppConstants.marksIcon, AppRoutes.lmsMarks),
+      _MenuItem('Homework', AppConstants.homeworkIcon, AppRoutes.lmsHomework),
+      _MenuItem('Timetable', AppConstants.timetableIcon, AppRoutes.lmsTimetable),
+      _MenuItem('Subjects', AppConstants.subjectsIcon, AppRoutes.lmsSubjects),
+      _MenuItem('Syllabus', AppConstants.syllabusIcon, AppRoutes.lmsSyllabus),
+      _MenuItem('Teachers', AppConstants.teachersIcon, AppRoutes.lmsTeachers),
+      _MenuItem('Chat', AppConstants.chatIcon, AppRoutes.lmsChat),
+      _MenuItem('Library', AppConstants.libraryIcon, AppRoutes.lmsLibrary),
+      _MenuItem('Transport', AppConstants.transportIcon, AppRoutes.lmsTransport),
+      _MenuItem('Exams', AppConstants.examsIcon, AppRoutes.lmsExams),
+      _MenuItem('Online Exam', AppConstants.onlineExamIcon, AppRoutes.lmsOnlineExam),
+      _MenuItem('Calendar', AppConstants.calendarIcon, AppRoutes.lmsCalendar),
+      _MenuItem('Hostel', AppConstants.hostelIcon, AppRoutes.lmsHostel),
+      _MenuItem('Visitors', AppConstants.visitorsIcon, AppRoutes.lmsVisitors),
+      _MenuItem('Apply Leave', AppConstants.leaveIcon, AppRoutes.lmsLeave),
     ];
 
     return Scaffold(
+      backgroundColor: AppConstants.backgroundColor,
       appBar: AppBar(
-        title: Text('Welcome ${authState.user?.fullName ?? "Student"}'),
+        title: Text(authState.user?.fullName ?? "Student"),
         backgroundColor: AppConstants.primaryColor,
         foregroundColor: Colors.white,
         actions: [
@@ -53,14 +54,14 @@ class LmsHomeScreen extends ConsumerWidget {
           crossAxisCount: 3,
           crossAxisSpacing: 16,
           mainAxisSpacing: 16,
-          childAspectRatio: 1,
+          childAspectRatio: 0.85,
         ),
         itemCount: menuItems.length,
         itemBuilder: (context, index) {
           final item = menuItems[index];
           return _MenuCard(
             title: item.title,
-            icon: item.icon,
+            imagePath: item.imagePath,
             onTap: () {
               Navigator.pushNamed(context, item.route);
             },
@@ -73,51 +74,87 @@ class LmsHomeScreen extends ConsumerWidget {
 
 class _MenuItem {
   final String title;
-  final IconData icon;
+  final String imagePath;
   final String route;
 
-  _MenuItem(this.title, this.icon, this.route);
+  _MenuItem(this.title, this.imagePath, this.route);
 }
 
 class _MenuCard extends StatelessWidget {
   final String title;
-  final IconData icon;
+  final String imagePath;
   final VoidCallback onTap;
 
   const _MenuCard({
     required this.title,
-    required this.icon,
+    required this.imagePath,
     required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 2,
+      elevation: 4,
+      shadowColor: AppConstants.primaryColor.withValues(alpha: 0.3),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(16),
       ),
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              size: 32,
-              color: AppConstants.primaryColor,
+        borderRadius: BorderRadius.circular(16),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.white,
+                Colors.white.withValues(alpha: 0.9),
+              ],
             ),
-            const SizedBox(height: 8),
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 60,
+                height: 60,
+                decoration: BoxDecoration(
+                  color: AppConstants.primaryColor.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Image.asset(
+                  imagePath,
+                  width: 40,
+                  height: 40,
+                  fit: BoxFit.contain,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Icon(
+                      Icons.image_not_supported,
+                      size: 30,
+                      color: AppConstants.primaryColor,
+                    );
+                  },
+                ),
               ),
-              textAlign: TextAlign.center,
-            ),
-          ],
+              const SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                    color: AppConstants.textColor,
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
