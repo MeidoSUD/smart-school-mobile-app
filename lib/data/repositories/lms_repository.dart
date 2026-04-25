@@ -44,7 +44,11 @@ class LmsRepository {
       _authOptions(),
     );
 
-    final loginResponse = LoginResponse.fromJson(response.data);
+    if (response.data is! Map<String, dynamic>) {
+      return LoginResponse(status: 'error', message: 'Unexpected response format from server');
+    }
+
+    final loginResponse = LoginResponse.fromJson(response.data as Map<String, dynamic>);
     if (loginResponse.token != null) {
       await storage.write(key: 'token', value: loginResponse.token);
     }

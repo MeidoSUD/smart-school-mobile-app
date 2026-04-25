@@ -25,5 +25,6 @@ class AppRoutes {
   static const String lmsHostel = '/lms/hostel';
   static const String lmsVisitors = '/lms/visitors';
   static const String lmsLeave = '/lms/leave';
+  static const String lmsAdmission = '/lms/admission';
   static const String notifications = '/notifications';
 }

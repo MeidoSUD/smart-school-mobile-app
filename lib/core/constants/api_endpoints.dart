@@ -1,5 +1,7 @@
 class ApiEndpoints {
-  static const String baseUrl = "https://your-domain.com/api/user";
+  // 💡 TIP: 'localhost' refers to the phone itself.
+  // Use '10.0.2.2' for Android Emulator OR your machine's IP (e.g. 10.80.64.185) for physical devices.
+  static const String baseUrl = "http://10.80.64.185/smart-school/api";
 
   // LMS Auth
   static const String lmsLogin = "$baseUrl/auth/login";
@@ -18,7 +20,8 @@ class ApiEndpoints {
   static const String lmsAttendance = "$baseUrl/attendence";
   static String lmsGetAttendance({String? start, String? end}) =>
       "$baseUrl/attendence/getAttendence?start=$start&end=$end";
-  static const String lmsDayAttendance = "$baseUrl/attendence/getdaysubattendence";
+  static const String lmsDayAttendance =
+      "$baseUrl/attendence/getdaysubattendence";
 
   // LMS Marks
   static const String lmsMarks = "$baseUrl/mark/marklist";
@@ -45,7 +48,8 @@ class ApiEndpoints {
 
   // LMS Notifications
   static const String lmsNotifications = "$baseUrl/notification";
-  static const String lmsNotificationStatus = "$baseUrl/notification/updatestatus";
+  static const String lmsNotificationStatus =
+      "$baseUrl/notification/updatestatus";
 
   // LMS Chat
   static const String lmsChatMyUser = "$baseUrl/chat/myuser";
@@ -66,7 +70,8 @@ class ApiEndpoints {
   // LMS Content
   static const String lmsContentList = "$baseUrl/content/list";
   static const String lmsContentAssignment = "$baseUrl/content/assignment";
-  static const String lmsContentStudyMaterial = "$baseUrl/content/studymaterial";
+  static const String lmsContentStudyMaterial =
+      "$baseUrl/content/studymaterial";
 
   // LMS Exams
   static const String lmsExams = "$baseUrl/exam";

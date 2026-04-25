@@ -3,21 +3,28 @@ class LoginResponse {
   final String? refreshToken;
   final LmsUserModel? user;
   final String status;
+  final String? message;
 
   LoginResponse({
     this.token,
     this.refreshToken,
     this.user,
     this.status = 'success',
+    this.message,
   });
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) {
-    final data = json['data'] as Map<String, dynamic>?;
+    final rawData = json['data'];
+    final Map<String, dynamic>? data = rawData is Map<String, dynamic> ? rawData : null;
+    
     return LoginResponse(
-      token: data?['token'],
-      refreshToken: data?['refresh_token'],
-      user: data?['user'] != null ? LmsUserModel.fromJson(data!['user']) : null,
-      status: json['status'] ?? 'success',
+      token: data?['token']?.toString(),
+      refreshToken: data?['refresh_token']?.toString(),
+      user: data?['user'] is Map<String, dynamic> 
+          ? LmsUserModel.fromJson(data!['user'] as Map<String, dynamic>) 
+          : null,
+      status: json['status']?.toString() ?? 'success',
+      message: json['message']?.toString(),
     );
   }
 }
@@ -51,7 +58,7 @@ class LmsUserModel {
 
   factory LmsUserModel.fromJson(Map<String, dynamic> json) {
     return LmsUserModel(
-      id: json['id'] ?? 0,
+      id: int.tryParse(json['id']?.toString() ?? '0') ?? 0,
       role: json['role'] ?? '',
       firstname: json['firstname'] ?? '',
       lastname: json['lastname'] ?? '',

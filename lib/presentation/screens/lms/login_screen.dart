@@ -3,6 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geniuses_school/core/constants/app_constants.dart';
 import 'package:geniuses_school/core/routes/app_routes.dart';
 import '../../../presentation/state/lms_auth_provider.dart';
+import '../../state/locale_provider.dart';
+import '../../../l10n/app_localizations.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 class LmsLoginScreen extends ConsumerStatefulWidget {
   const LmsLoginScreen({super.key});
@@ -33,9 +36,17 @@ class _LmsLoginScreenState extends ConsumerState<LmsLoginScreen> {
         );
   }
 
+  void _loginAsDemo() {
+    _usernameController.text = 'student';
+    _passwordController.text = 'password';
+    _login();
+  }
+
   @override
   Widget build(BuildContext context) {
+    FlutterNativeSplash.remove();
     final authState = ref.watch(lmsAuthProvider);
+    final l10n = AppLocalizations.of(context)!;
 
     ref.listen<LmsAuthState>(lmsAuthProvider, (previous, next) {
       if (next.status == LmsAuthStatus.authenticated) {
@@ -53,8 +64,19 @@ class _LmsLoginScreenState extends ConsumerState<LmsLoginScreen> {
     return Scaffold(
       backgroundColor: AppConstants.backgroundColor,
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24),
+        child: Stack(
+          children: [
+            Positioned(
+              top: 0,
+              right: 0,
+              child: IconButton(
+                icon: const Icon(Icons.language, color: AppConstants.primaryColor),
+                onPressed: () => ref.read(localeProvider.notifier).toggleLocale(),
+                tooltip: l10n.switchLanguage,
+              ),
+            ),
+            SingleChildScrollView(
+              padding: const EdgeInsets.all(24),
           child: Form(
             key: _formKey,
             child: Column(
@@ -80,7 +102,7 @@ class _LmsLoginScreenState extends ConsumerState<LmsLoginScreen> {
                     borderRadius: BorderRadius.circular(20),
                     child: Image.asset(
                       AppConstants.logo,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.contain,
                       errorBuilder: (context, error, stackTrace) {
                         return const Icon(
                           Icons.school,
@@ -93,8 +115,8 @@ class _LmsLoginScreenState extends ConsumerState<LmsLoginScreen> {
                 ),
                 const SizedBox(height: 16),
                 // App Name
-                const Text(
-                  'Smart School',
+                Text(
+                  l10n.appName,
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
@@ -104,7 +126,7 @@ class _LmsLoginScreenState extends ConsumerState<LmsLoginScreen> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Login to continue',
+                  l10n.loginToContinue,
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey[600],
@@ -128,7 +150,7 @@ class _LmsLoginScreenState extends ConsumerState<LmsLoginScreen> {
                   child: TextFormField(
                     controller: _usernameController,
                     decoration: InputDecoration(
-                      hintText: 'Username',
+                      hintText: l10n.username,
                       prefixIcon: const Icon(Icons.person_outline),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -139,7 +161,7 @@ class _LmsLoginScreenState extends ConsumerState<LmsLoginScreen> {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter username';
+                        return l10n.pleaseEnterUsername;
                       }
                       return null;
                     },
@@ -163,7 +185,7 @@ class _LmsLoginScreenState extends ConsumerState<LmsLoginScreen> {
                     controller: _passwordController,
                     obscureText: _obscurePassword,
                     decoration: InputDecoration(
-                      hintText: 'Password',
+                      hintText: l10n.password,
                       prefixIcon: const Icon(Icons.lock_outline),
                       suffixIcon: IconButton(
                         icon: Icon(
@@ -187,7 +209,7 @@ class _LmsLoginScreenState extends ConsumerState<LmsLoginScreen> {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter password';
+                        return l10n.pleaseEnterPassword;
                       }
                       return null;
                     },
@@ -216,19 +238,68 @@ class _LmsLoginScreenState extends ConsumerState<LmsLoginScreen> {
                             valueColor: AlwaysStoppedAnimation(Colors.white),
                           ),
                         )
-                      : const Text(
-                          'Login',
-                          style: TextStyle(
+                      : Text(
+                          l10n.login,
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
                 ),
+                const SizedBox(height: 16),
+                // Demo Login Button
+                OutlinedButton(
+                  onPressed: authState.status == LmsAuthStatus.loading ? null : _loginAsDemo,
+                  style: OutlinedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    side: const BorderSide(color: AppConstants.primaryColor),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: Text(
+                    l10n.loginAsDemo,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: AppConstants.primaryColor,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 32),
+                // Register / Admission Options
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Text(
+                      l10n.noAccount,
+                      style: TextStyle(color: Colors.grey[600]),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, AppRoutes.lmsAdmission);
+                      },
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                      ),
+                      child: Text(
+                        l10n.applyAdmission,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: AppConstants.primaryColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
         ),
-      ),
-    );
+      ],
+    ),
+  ),
+);
   }
 }

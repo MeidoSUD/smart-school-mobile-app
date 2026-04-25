@@ -70,7 +70,7 @@ class LmsAuthNotifier extends StateNotifier<LmsAuthState> {
       } else {
         state = LmsAuthState(
           status: LmsAuthStatus.error,
-          message: 'Invalid credentials',
+          message: response.message ?? 'Invalid credentials',
         );
       }
     } catch (e) {

@@ -21,6 +21,7 @@ import '../../presentation/screens/lms/lms_visitors_screen.dart';
 import '../../presentation/screens/lms/lms_leave_screen.dart';
 import '../../presentation/screens/lms/lms_chat_screen.dart';
 import '../../presentation/screens/lms/lms_profile_screen.dart';
+import '../../presentation/screens/lms/lms_admission_screen.dart';
 import 'app_routes.dart';
 
 class AppRouter {
@@ -46,5 +47,6 @@ class AppRouter {
     AppRoutes.lmsLeave: (context) => const LmsLeaveScreen(),
     AppRoutes.lmsChat: (context) => const LmsChatListScreen(),
     AppRoutes.lmsProfile: (context) => const LmsProfileScreen(),
+    AppRoutes.lmsAdmission: (context) => const LmsAdmissionScreen(),
   };
 }
