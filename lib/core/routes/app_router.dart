@@ -4,8 +4,6 @@ import '../../presentation/screens/lms/login_screen.dart';
 import '../../presentation/screens/lms/lms_home_screen.dart';
 import '../../presentation/screens/lms/lms_dashboard_screen.dart';
 import '../../presentation/screens/lms/lms_fees_screen.dart';
-import '../../presentation/screens/lms/lms_attendance_screen.dart';
-import '../../presentation/screens/lms/lms_marks_screen.dart';
 import '../../presentation/screens/lms/lms_homework_screen.dart';
 import '../../presentation/screens/lms/lms_timetable_screen.dart';
 import '../../presentation/screens/lms/lms_subjects_screen.dart';
