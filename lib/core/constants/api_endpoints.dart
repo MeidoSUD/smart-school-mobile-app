@@ -2,7 +2,7 @@ class ApiEndpoints {
   // 💡 TIP: 'localhost' refers to the phone itself.
   // Use '10.0.2.2' for Android Emulator OR your machine's IP (e.g. 10.80.64.185) for physical devices.
   static const String baseUrl =
-      "https://vernice-narial-gustily.ngrok-free.dev/api";
+      "https://raise-occupied-impacts-cheats.trycloudflare.com/api";
 
   // LMS Auth
   static const String lmsLogin = "$baseUrl/auth/login";

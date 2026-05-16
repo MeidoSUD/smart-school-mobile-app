@@ -110,8 +110,9 @@ class LmsRepository {
       ApiEndpoints.lmsGetFees,
       headers,
     );
-    final data = response.data['data'] as List? ?? [];
-    return data.map((e) => FeeModel.fromJson(e)).toList();
+    final data = response.data['data'] as Map<String, dynamic>? ?? {};
+    final dueFees = data['student_due_fee'] as List? ?? [];
+    return dueFees.map((e) => FeeModel.fromJson(e)).toList();
   }
 
   Future<List<AttendanceModel>> getAttendance({String? start, String? end}) async {
@@ -130,8 +131,9 @@ class LmsRepository {
       ApiEndpoints.lmsMarks,
       headers,
     );
-    final data = response.data['data'] as List? ?? [];
-    return data.map((e) => MarkModel.fromJson(e)).toList();
+    final data = response.data['data'] as Map<String, dynamic>? ?? {};
+    final examSchedule = data['examSchedule'] as List? ?? [];
+    return examSchedule.map((e) => MarkModel.fromJson(e)).toList();
   }
 
   Future<List<HomeworkModel>> getHomework() async {
@@ -140,8 +142,9 @@ class LmsRepository {
       ApiEndpoints.lmsHomework,
       headers,
     );
-    final data = response.data['data'] as List? ?? [];
-    return data.map((e) => HomeworkModel.fromJson(e)).toList();
+    final data = response.data['data'] as Map<String, dynamic>? ?? {};
+    final list = data['homeworklist'] as List? ?? [];
+    return list.map((e) => HomeworkModel.fromJson(e)).toList();
   }
 
   Future<HomeworkModel> getHomeworkDetail(int id, int status) async {
@@ -176,8 +179,9 @@ class LmsRepository {
       ApiEndpoints.lmsTimetable,
       headers,
     );
-    final data = response.data['data'] as List? ?? [];
-    return data.map((e) => TimetableModel.fromJson(e)).toList();
+    final data = response.data['data'] as Map<String, dynamic>? ?? {};
+    final list = data['timetable'] as List? ?? [];
+    return list.map((e) => TimetableModel.fromJson(e)).toList();
   }
 
   Future<List<SubjectModel>> getSubjects() async {
@@ -186,8 +190,9 @@ class LmsRepository {
       ApiEndpoints.lmsSubjects,
       headers,
     );
-    final data = response.data['data'] as List? ?? [];
-    return data.map((e) => SubjectModel.fromJson(e)).toList();
+    final data = response.data['data'] as Map<String, dynamic>? ?? {};
+    final list = data['subjects'] as List? ?? [];
+    return list.map((e) => SubjectModel.fromJson(e)).toList();
   }
 
   Future<List<SyllabusModel>> getSyllabus() async {
@@ -196,8 +201,9 @@ class LmsRepository {
       ApiEndpoints.lmsSyllabus,
       headers,
     );
-    final data = response.data['data'] as List? ?? [];
-    return data.map((e) => SyllabusModel.fromJson(e)).toList();
+    final data = response.data['data'] as Map<String, dynamic>? ?? {};
+    final list = data['subjects_data'] as List? ?? [];
+    return list.map((e) => SyllabusModel.fromJson(e)).toList();
   }
 
   Future<List<TeacherModel>> getTeachers() async {
@@ -206,8 +212,9 @@ class LmsRepository {
       ApiEndpoints.lmsTeachers,
       headers,
     );
-    final data = response.data['data'] as List? ?? [];
-    return data.map((e) => TeacherModel.fromJson(e)).toList();
+    final data = response.data['data'] as Map<String, dynamic>? ?? {};
+    final list = data['teacherlist'] as List? ?? [];
+    return list.map((e) => TeacherModel.fromJson(e)).toList();
   }
 
   Future<void> rateTeacher({
@@ -237,8 +244,9 @@ class LmsRepository {
       ApiEndpoints.lmsNotifications,
       headers,
     );
-    final data = response.data['data'] as List? ?? [];
-    return data.map((e) => NotificationModel.fromJson(e)).toList();
+    final data = response.data['data'] as Map<String, dynamic>? ?? {};
+    final list = data['notificationlist'] as List? ?? [];
+    return list.map((e) => NotificationModel.fromJson(e)).toList();
   }
 
   Future<void> markNotificationAsRead(int notificationId) async {
@@ -256,8 +264,9 @@ class LmsRepository {
       ApiEndpoints.lmsChatMyUser,
       headers,
     );
-    final data = response.data['data'] as List? ?? [];
-    return data.map((e) => ChatUserModel.fromJson(e)).toList();
+    final data = response.data['data'] as Map<String, dynamic>? ?? {};
+    final list = data['userList'] as List? ?? [];
+    return list.map((e) => ChatUserModel.fromJson(e)).toList();
   }
 
   Future<List<ChatMessageModel>> getChatRecord(int connectionId) async {
@@ -267,8 +276,9 @@ class LmsRepository {
       {'chat_connection_id': connectionId},
       headers,
     );
-    final data = response.data['data'] as List? ?? [];
-    return data.map((e) => ChatMessageModel.fromJson(e)).toList();
+    final data = response.data['data'] as Map<String, dynamic>? ?? {};
+    final list = data['chatList'] as List? ?? [];
+    return list.map((e) => ChatMessageModel.fromJson(e)).toList();
   }
 
   Future<void> sendMessage({
@@ -296,8 +306,9 @@ class LmsRepository {
       ApiEndpoints.lmsApplyLeave,
       headers,
     );
-    final data = response.data['data'] as List? ?? [];
-    return data.map((e) => LeaveModel.fromJson(e)).toList();
+    final data = response.data['data'] as Map<String, dynamic>? ?? {};
+    final list = data['results'] as List? ?? [];
+    return list.map((e) => LeaveModel.fromJson(e)).toList();
   }
 
   Future<void> applyLeave({
@@ -325,8 +336,9 @@ class LmsRepository {
       ApiEndpoints.lmsBooks,
       headers,
     );
-    final data = response.data['data'] as List? ?? [];
-    return data.map((e) => BookModel.fromJson(e)).toList();
+    final data = response.data['data'] as Map<String, dynamic>? ?? {};
+    final list = data['listbook'] as List? ?? [];
+    return list.map((e) => BookModel.fromJson(e)).toList();
   }
 
   Future<List<BookModel>> getIssuedBooks() async {
@@ -335,8 +347,9 @@ class LmsRepository {
       ApiEndpoints.lmsBookIssue,
       headers,
     );
-    final data = response.data['data'] as List? ?? [];
-    return data.map((e) => BookModel.fromJson(e)).toList();
+    final data = response.data['data'] as Map<String, dynamic>? ?? {};
+    final list = data['bookList'] as List? ?? [];
+    return list.map((e) => BookModel.fromJson(e)).toList();
   }
 
   Future<TransportModel> getTransport() async {
@@ -354,8 +367,9 @@ class LmsRepository {
       ApiEndpoints.lmsContentStudyMaterial,
       headers,
     );
-    final data = response.data['data'] as List? ?? [];
-    return data.map((e) => ContentModel.fromJson(e)).toList();
+    final data = response.data['data'] as Map<String, dynamic>? ?? {};
+    final list = data['list'] as List? ?? [];
+    return list.map((e) => ContentModel.fromJson(e)).toList();
   }
 
   Future<List<ExamModel>> getExamSchedule() async {
@@ -364,8 +378,9 @@ class LmsRepository {
       ApiEndpoints.lmsExamSchedule,
       headers,
     );
-    final data = response.data['data'] as List? ?? [];
-    return data.map((e) => ExamModel.fromJson(e)).toList();
+    final data = response.data['data'] as Map<String, dynamic>? ?? {};
+    final list = data['examSchedule'] as List? ?? [];
+    return list.map((e) => ExamModel.fromJson(e)).toList();
   }
 
   Future<List<ExamResultModel>> getExamResults() async {
@@ -374,8 +389,9 @@ class LmsRepository {
       ApiEndpoints.lmsExamResult,
       headers,
     );
-    final data = response.data['data'] as List? ?? [];
-    return data.map((e) => ExamResultModel.fromJson(e)).toList();
+    final data = response.data['data'] as Map<String, dynamic>? ?? {};
+    final list = data['exam_result'] as List? ?? [];
+    return list.map((e) => ExamResultModel.fromJson(e)).toList();
   }
 
   Future<List<VisitorModel>> getVisitors() async {
@@ -384,8 +400,9 @@ class LmsRepository {
       ApiEndpoints.lmsVisitors,
       headers,
     );
-    final data = response.data['data'] as List? ?? [];
-    return data.map((e) => VisitorModel.fromJson(e)).toList();
+    final data = response.data['data'] as Map<String, dynamic>? ?? {};
+    final list = data['visitor_list'] as List? ?? [];
+    return list.map((e) => VisitorModel.fromJson(e)).toList();
   }
 
   Future<List<CalendarEventModel>> getEvents() async {
@@ -413,8 +430,9 @@ class LmsRepository {
       ApiEndpoints.lmsOnlineExam,
       headers,
     );
-    final data = response.data['data'] as List? ?? [];
-    return data.map((e) => OnlineExamModel.fromJson(e)).toList();
+    final data = response.data['data'] as Map<String, dynamic>? ?? {};
+    final list = data['examList'] as List? ?? [];
+    return list.map((e) => OnlineExamModel.fromJson(e)).toList();
   }
 
   Future<void> submitOnlineExam({
