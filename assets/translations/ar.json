@@ -1,0 +1,245 @@
+{
+  "auth": {
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "username": "اسم المستخدم",
+    "password": "كلمة المرور",
+    "enter_username": "أدخل اسم المستخدم",
+    "enter_password": "أدخل كلمة المرور",
+    "login_success": "تم تسجيل الدخول بنجاح",
+    "login_failed": "فشل تسجيل الدخول",
+    "invalid_credentials": "بيانات اعتماد غير صالحة",
+    "please_enter_username": "الرجاء إدخال اسم المستخدم",
+    "please_enter_password": "الرجاء إدخال كلمة المرور",
+    "change_password": "تغيير كلمة المرور",
+    "current_password": "كلمة المرور الحالية",
+    "new_password": "كلمة المرور الجديدة",
+    "confirm_password": "تأكيد كلمة المرور"
+  },
+  "common": {
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "retry": "إعادة المحاولة",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "search": "بحث",
+    "no_data": "لا توجد بيانات",
+    "something_went_wrong": "حدث خطأ ما",
+    "back": "رجوع",
+    "next": "التالي",
+    "done": "تم",
+    "confirm": "تأكيد",
+    "details": "التفاصيل",
+    "status": "الحالة",
+    "date": "التاريخ",
+    "time": "الوقت",
+    "name": "الاسم",
+    "description": "الوصف",
+    "amount": "المبلغ",
+    "total": "الإجمالي",
+    "submit": "إرسال",
+    "upload": "رفع",
+    "download": "تحميل",
+    "view": "عرض",
+    "refresh": "تحديث"
+  },
+  "home": {
+    "dashboard": "لوحة التحكم",
+    "profile": "الملف الشخصي",
+    "fees": "الرسوم",
+    "attendance": "الحضور",
+    "homework": "الواجبات",
+    "timetable": "الجدول الزمني",
+    "subjects": "المواد",
+    "exams": "الامتحانات",
+    "chat": "المحادثة",
+    "library": "المكتبة",
+    "transport": "النقل",
+    "settings": "الإعدادات",
+    "syllabus": "المناهج",
+    "teachers": "المعلمون",
+    "leave": "الإجازات",
+    "visitors": "الزوار",
+    "hostel": "السكن",
+    "online_exam": "امتحان عبر الإنترنت",
+    "calendar": "التقويم",
+    "admission": "القبول",
+    "welcome": "مرحباً",
+    "notifications": "الإشعارات",
+    "services": "الخدمات"
+  },
+  "dashboard": {
+    "attendance_percentage": "نسبة الحضور",
+    "recent_homework": "الواجبات الأخيرة",
+    "recent_notifications": "الإشعارات الأخيرة",
+    "upcoming_exams": "الامتحانات القادمة",
+    "today_timetable": "جدول اليوم"
+  },
+  "fees": {
+    "title": "الرسوم",
+    "amount_due": "المبلغ المستحق",
+    "paid": "مدفوع",
+    "unpaid": "غير مدفوع",
+    "pending": "معلق",
+    "due_date": "تاريخ الاستحقاق",
+    "payment_history": "سجل المدفوعات",
+    "pay_now": "ادفع الآن"
+  },
+  "attendance": {
+    "title": "الحضور",
+    "present": "حاضر",
+    "absent": "غائب",
+    "late": "متأخر",
+    "excused": "بعذر",
+    "remark": "ملاحظة",
+    "monthly_view": "عرض شهري",
+    "percentage": "النسبة المئوية"
+  },
+  "homework": {
+    "title": "الواجبات",
+    "subject": "المادة",
+    "due_date": "تاريخ الاستحقاق",
+    "completed": "مكتمل",
+    "pending": "معلق",
+    "upload_file": "رفع ملف",
+    "add_message": "إضافة رسالة",
+    "submit_homework": "تسليم الواجب"
+  },
+  "timetable": {
+    "title": "الجدول الزمني",
+    "day": "اليوم",
+    "room": "الغرفة",
+    "monday": "الاثنين",
+    "tuesday": "الثلاثاء",
+    "wednesday": "الأربعاء",
+    "thursday": "الخميس",
+    "friday": "الجمعة",
+    "saturday": "السبت",
+    "sunday": "الأحد"
+  },
+  "subjects": {
+    "title": "المواد",
+    "code": "الرمز",
+    "teacher": "المعلم"
+  },
+  "syllabus": {
+    "title": "المناهج",
+    "topic": "الموضوع",
+    "completed": "مكتمل",
+    "pending": "معلق"
+  },
+  "teachers": {
+    "title": "المعلمون",
+    "rate": "تقييم",
+    "comment": "تعليق",
+    "submit_rating": "إرسال التقييم"
+  },
+  "exams": {
+    "title": "الامتحانات",
+    "exam_schedule": "جدول الامتحانات",
+    "exam_results": "نتائج الامتحانات",
+    "marks": "الدرجات",
+    "grade": "التقدير",
+    "total_marks": "إجمالي الدرجات",
+    "remarks": "ملاحظات"
+  },
+  "chat": {
+    "title": "المحادثة",
+    "type_message": "اكتب رسالة...",
+    "send": "إرسال",
+    "online": "متصل",
+    "offline": "غير متصل",
+    "last_seen": "آخر ظهور"
+  },
+  "library": {
+    "title": "المكتبة",
+    "books": "الكتب",
+    "issued_books": "الكتب المعارة",
+    "author": "المؤلف",
+    "issue_date": "تاريخ الإعارة",
+    "return_date": "تاريخ الإرجاع",
+    "available": "متاح",
+    "issued": "معار"
+  },
+  "transport": {
+    "title": "النقل",
+    "route": "المسار",
+    "driver_name": "اسم السائق",
+    "driver_phone": "هاتف السائق",
+    "bus_number": "رقم الحافلة",
+    "pickup_time": "وقت الالتقاط",
+    "pickup_point": "نقطة الالتقاط"
+  },
+  "leave": {
+    "title": "الإجازات",
+    "apply_leave": "تقديم إجازة",
+    "from_date": "من تاريخ",
+    "to_date": "إلى تاريخ",
+    "reason": "السبب",
+    "approved": "موافق عليه",
+    "rejected": "مرفوض",
+    "pending": "معلق",
+    "applied_date": "تاريخ التقديم"
+  },
+  "visitors": {
+    "title": "الزوار",
+    "visit_date": "تاريخ الزيارة",
+    "phone": "الهاتف",
+    "purpose": "الغرض"
+  },
+  "hostel": {
+    "title": "السكن",
+    "room_number": "رقم الغرفة",
+    "block": "البلوك",
+    "bed_number": "رقم السرير"
+  },
+  "online_exam": {
+    "title": "امتحان عبر الإنترنت",
+    "duration": "المدة",
+    "total_questions": "إجمالي الأسئلة",
+    "start_exam": "بدء الامتحان",
+    "submit_exam": "تسليم الامتحان",
+    "time_remaining": "الوقت المتبقي"
+  },
+  "calendar": {
+    "title": "التقويم",
+    "event": "حدث",
+    "events": "الأحداث",
+    "today": "اليوم"
+  },
+  "profile": {
+    "title": "الملف الشخصي",
+    "edit_profile": "تعديل الملف الشخصي",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "gender": "الجنس",
+    "nationality": "الجنسية",
+    "student_id": "رقم الطالب",
+    "parent_phone": "هاتف ولي الأمر",
+    "change_photo": "تغيير الصورة"
+  },
+  "admission": {
+    "title": "القبول",
+    "apply_now": "قدم الآن",
+    "application_status": "حالة الطلب"
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "language": "اللغة",
+    "theme": "المظهر",
+    "english": "English",
+    "arabic": "العربية",
+    "light": "فاتح",
+    "dark": "داكن",
+    "notifications": "الإشعارات",
+    "privacy": "الخصوصية",
+    "about": "حول",
+    "logout": "تسجيل الخروج",
+    "version": "الإصدار"
+  },
+  "splash": {
+    "loading": "جاري التحميل..."
+  }
+}

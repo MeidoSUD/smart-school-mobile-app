@@ -1,0 +1,245 @@
+{
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "username": "Username",
+    "password": "Password",
+    "enter_username": "Enter your username",
+    "enter_password": "Enter your password",
+    "login_success": "Login successful",
+    "login_failed": "Login failed",
+    "invalid_credentials": "Invalid credentials",
+    "please_enter_username": "Please enter username",
+    "please_enter_password": "Please enter password",
+    "change_password": "Change Password",
+    "current_password": "Current Password",
+    "new_password": "New Password",
+    "confirm_password": "Confirm Password"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search",
+    "no_data": "No data available",
+    "something_went_wrong": "Something went wrong",
+    "back": "Back",
+    "next": "Next",
+    "done": "Done",
+    "confirm": "Confirm",
+    "details": "Details",
+    "status": "Status",
+    "date": "Date",
+    "time": "Time",
+    "name": "Name",
+    "description": "Description",
+    "amount": "Amount",
+    "total": "Total",
+    "submit": "Submit",
+    "upload": "Upload",
+    "download": "Download",
+    "view": "View",
+    "refresh": "Refresh"
+  },
+  "home": {
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "fees": "Fees",
+    "attendance": "Attendance",
+    "homework": "Homework",
+    "timetable": "Timetable",
+    "subjects": "Subjects",
+    "exams": "Exams",
+    "chat": "Chat",
+    "library": "Library",
+    "transport": "Transport",
+    "settings": "Settings",
+    "syllabus": "Syllabus",
+    "teachers": "Teachers",
+    "leave": "Leave",
+    "visitors": "Visitors",
+    "hostel": "Hostel",
+    "online_exam": "Online Exam",
+    "calendar": "Calendar",
+    "admission": "Admission",
+    "welcome": "Welcome",
+    "notifications": "Notifications",
+    "services": "Services"
+  },
+  "dashboard": {
+    "attendance_percentage": "Attendance Percentage",
+    "recent_homework": "Recent Homework",
+    "recent_notifications": "Recent Notifications",
+    "upcoming_exams": "Upcoming Exams",
+    "today_timetable": "Today's Timetable"
+  },
+  "fees": {
+    "title": "Fees",
+    "amount_due": "Amount Due",
+    "paid": "Paid",
+    "unpaid": "Unpaid",
+    "pending": "Pending",
+    "due_date": "Due Date",
+    "payment_history": "Payment History",
+    "pay_now": "Pay Now"
+  },
+  "attendance": {
+    "title": "Attendance",
+    "present": "Present",
+    "absent": "Absent",
+    "late": "Late",
+    "excused": "Excused",
+    "remark": "Remark",
+    "monthly_view": "Monthly View",
+    "percentage": "Percentage"
+  },
+  "homework": {
+    "title": "Homework",
+    "subject": "Subject",
+    "due_date": "Due Date",
+    "completed": "Completed",
+    "pending": "Pending",
+    "upload_file": "Upload File",
+    "add_message": "Add Message",
+    "submit_homework": "Submit Homework"
+  },
+  "timetable": {
+    "title": "Timetable",
+    "day": "Day",
+    "room": "Room",
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday"
+  },
+  "subjects": {
+    "title": "Subjects",
+    "code": "Code",
+    "teacher": "Teacher"
+  },
+  "syllabus": {
+    "title": "Syllabus",
+    "topic": "Topic",
+    "completed": "Completed",
+    "pending": "Pending"
+  },
+  "teachers": {
+    "title": "Teachers",
+    "rate": "Rate",
+    "comment": "Comment",
+    "submit_rating": "Submit Rating"
+  },
+  "exams": {
+    "title": "Exams",
+    "exam_schedule": "Exam Schedule",
+    "exam_results": "Exam Results",
+    "marks": "Marks",
+    "grade": "Grade",
+    "total_marks": "Total Marks",
+    "remarks": "Remarks"
+  },
+  "chat": {
+    "title": "Chat",
+    "type_message": "Type a message...",
+    "send": "Send",
+    "online": "Online",
+    "offline": "Offline",
+    "last_seen": "Last seen"
+  },
+  "library": {
+    "title": "Library",
+    "books": "Books",
+    "issued_books": "Issued Books",
+    "author": "Author",
+    "issue_date": "Issue Date",
+    "return_date": "Return Date",
+    "available": "Available",
+    "issued": "Issued"
+  },
+  "transport": {
+    "title": "Transport",
+    "route": "Route",
+    "driver_name": "Driver Name",
+    "driver_phone": "Driver Phone",
+    "bus_number": "Bus Number",
+    "pickup_time": "Pickup Time",
+    "pickup_point": "Pickup Point"
+  },
+  "leave": {
+    "title": "Leave",
+    "apply_leave": "Apply Leave",
+    "from_date": "From Date",
+    "to_date": "To Date",
+    "reason": "Reason",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "pending": "Pending",
+    "applied_date": "Applied Date"
+  },
+  "visitors": {
+    "title": "Visitors",
+    "visit_date": "Visit Date",
+    "phone": "Phone",
+    "purpose": "Purpose"
+  },
+  "hostel": {
+    "title": "Hostel",
+    "room_number": "Room Number",
+    "block": "Block",
+    "bed_number": "Bed Number"
+  },
+  "online_exam": {
+    "title": "Online Exam",
+    "duration": "Duration",
+    "total_questions": "Total Questions",
+    "start_exam": "Start Exam",
+    "submit_exam": "Submit Exam",
+    "time_remaining": "Time Remaining"
+  },
+  "calendar": {
+    "title": "Calendar",
+    "event": "Event",
+    "events": "Events",
+    "today": "Today"
+  },
+  "profile": {
+    "title": "Profile",
+    "edit_profile": "Edit Profile",
+    "email": "Email",
+    "phone": "Phone",
+    "gender": "Gender",
+    "nationality": "Nationality",
+    "student_id": "Student ID",
+    "parent_phone": "Parent Phone",
+    "change_photo": "Change Photo"
+  },
+  "admission": {
+    "title": "Admission",
+    "apply_now": "Apply Now",
+    "application_status": "Application Status"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "theme": "Theme",
+    "english": "English",
+    "arabic": "العربية",
+    "light": "Light",
+    "dark": "Dark",
+    "notifications": "Notifications",
+    "privacy": "Privacy",
+    "about": "About",
+    "logout": "Logout",
+    "version": "Version"
+  },
+  "splash": {
+    "loading": "Loading..."
+  }
+}

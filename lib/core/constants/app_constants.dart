@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 class AppConstants {
   const AppConstants._();
 
+  // App Mode: Set to true to use dummy data for testing
+  static const bool useDummyData = true;
+
   static const String appName = 'Smart School';
   static const double defaultPadding = 16.0;
   static const double defaultRadius = 12.0;

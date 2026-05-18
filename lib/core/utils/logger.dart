@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 class Logger {
   static void log(String message) {
     if (kDebugMode) {
-      debugPrint("🟢 $message");
+      debugPrint('🟢 $message');
     }
   }
 
@@ -15,8 +15,8 @@ class Logger {
     bool fatal = false,
   }) {
     if (kDebugMode) {
-      debugPrint("🔴 Error: $exception");
-      if (stack != null) debugPrint("Stack: $stack");
+      debugPrint('🔴 Error: $exception');
+      if (stack != null) debugPrint('Stack: $stack');
     } else {
       FirebaseCrashlytics.instance.recordError(
         exception,

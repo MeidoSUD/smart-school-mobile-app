@@ -1,44 +1,66 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'core/routes/app_router.dart';
-import 'core/theme/app_theme.dart';
-import 'core/constants/app_constants.dart';
-import 'presentation/screens/lms/login_screen.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'l10n/app_localizations.dart';
-import 'presentation/state/locale_provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'config/routes/app_router.dart';
+import 'config/theme/app_theme.dart';
+import 'core/bloc/app_bloc_observer.dart';
+import 'core/di/injection.dart';
+import 'core/utils/lang_helper.dart';
+import 'features/auth/presentation/bloc/auth_cubit.dart';
+import 'features/settings/presentation/cubit/settings_cubit.dart';
+import 'firebase_options.dart';
 
 void main() async {
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(const ProviderScope(child: LmsApp()));
-  
-  // Remove the splash screen after the app is ready
-  FlutterNativeSplash.remove();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await EasyLocalization.ensureInitialized();
+  await configureDependencies();
+
+  Bloc.observer = AppBlocObserver();
+
+  final startLocale = await LangHelper.getSavedLocale();
+
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale('en'), Locale('ar')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en'),
+      startLocale: startLocale,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (_) => getIt<SettingsCubit>()),
+          BlocProvider(create: (_) => getIt<AuthCubit>()),
+        ],
+        child: const App(),
+      ),
+    ),
+  );
 }
 
-class LmsApp extends ConsumerWidget {
-  const LmsApp({super.key});
+class App extends StatelessWidget {
+  const App({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final locale = ref.watch(localeProvider);
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: AppConstants.appName,
-      theme: AppTheme.lightTheme,
-      home: const LmsLoginScreen(),
-      routes: AppRouter.routes,
-      locale: locale,
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: AppLocalizations.supportedLocales,
+  Widget build(BuildContext context) {
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      child: MaterialApp.router(
+        title: 'Smart School',
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: context.watch<SettingsCubit>().state.themeMode,
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        routerConfig: appRouter,
+      ),
     );
   }
 }
